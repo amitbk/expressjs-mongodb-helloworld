@@ -4,8 +4,14 @@ const express = require('express');
 const userController = require('./controllers/userController');
 const path = require('path');
 const expresshbs = require('express-handlebars');
+const bodyparser = require('body-parser');
 
 var app = express();
+
+app.use(bodyparser.urlencoded({
+  extended: true
+}));
+app.use(bodyparser.json());
 
 app.set('views', path.join(__dirname, '/views/'));
 app.engine('hbs', expresshbs({ extname: 'hbs', defaultLayout: 'mainLayout', layoutsDir: __dirname + '/views/layouts/' }));
